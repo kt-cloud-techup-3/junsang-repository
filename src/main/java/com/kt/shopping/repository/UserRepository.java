@@ -48,4 +48,12 @@ public class UserRepository {
                 userId
         );
     }
+
+    public void delete(String userId) {
+        String sql = "DELETE FROM member WHERE login_id=?";
+        jdbcTemplate.update(
+                sql,
+                userId
+        );
+    }
 }

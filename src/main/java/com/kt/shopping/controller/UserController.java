@@ -30,4 +30,9 @@ public class UserController {
     public User detail(@PathVariable String userId) {
         return userService.detail(userId);
     }
+
+    @DeleteMapping("/{userId}")
+    public void delete(@PathVariable String userId) {
+        userService.delete(userId);
+    }
 }

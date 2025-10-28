@@ -11,4 +11,6 @@ public interface UserService {
     void update(String userId, UserUpdateRequest request);
 
     User detail(String userId);
+
+    void delete(String userId);
 }
