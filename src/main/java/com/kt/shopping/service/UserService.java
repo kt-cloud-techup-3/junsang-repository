@@ -9,4 +9,6 @@ public interface UserService {
     void create(UserCreateRequest request);
 
     void update(String userId, UserUpdateRequest request);
+
+    User detail(String userId);
 }

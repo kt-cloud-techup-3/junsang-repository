@@ -1,5 +1,6 @@
 package com.kt.shopping.controller;
 
+import com.kt.shopping.domain.User;
 import com.kt.shopping.domain.dto.request.UserCreateRequest;
 import com.kt.shopping.domain.dto.request.UserUpdateRequest;
 import com.kt.shopping.service.UserService;
@@ -23,5 +24,10 @@ public class UserController {
     public void update(@PathVariable String userId,
                        @RequestBody UserUpdateRequest update) {
         userService.update(userId, update);
+    }
+
+    @GetMapping("/{userId}")
+    public User detail(@PathVariable String userId) {
+        return userService.detail(userId);
     }
 }

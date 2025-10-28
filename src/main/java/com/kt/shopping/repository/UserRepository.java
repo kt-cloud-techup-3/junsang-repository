@@ -34,4 +34,18 @@ public class UserRepository {
                 userId
         );
     }
+
+    public User detail(String userId) {
+        String sql  = "SELECT * FROM member WHERE login_id=?";
+        return jdbcTemplate.queryForObject(
+                sql,
+                (result, rownum) -> new User(
+                        result.getString("login_id"),
+                        result.getString("password"),
+                        result.getString("name"),
+                        result.getDate("birthday").toLocalDate()
+                ),
+                userId
+        );
+    }
 }
