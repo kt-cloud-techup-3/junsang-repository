@@ -2,6 +2,7 @@ package com.kt.shopping.service;
 
 import com.kt.shopping.domain.User;
 import com.kt.shopping.domain.dto.request.UserCreateRequest;
+import com.kt.shopping.domain.dto.request.UserUpdateRequest;
 import com.kt.shopping.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,11 @@ public class UserServiceImpl implements UserService {
     public void create(UserCreateRequest request) {
         User user = User.create(request);
         userRepository.save(user);
+    }
 
+    @Override
+    @Transactional
+    public void update(String userId, UserUpdateRequest update) {
+        userRepository.update(userId, update);
     }
 }

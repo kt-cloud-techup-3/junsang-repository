@@ -1,13 +1,10 @@
 package com.kt.shopping.controller;
 
-import com.kt.shopping.domain.User;
 import com.kt.shopping.domain.dto.request.UserCreateRequest;
+import com.kt.shopping.domain.dto.request.UserUpdateRequest;
 import com.kt.shopping.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
@@ -20,5 +17,11 @@ public class UserController {
     @PostMapping
     public void create(@RequestBody UserCreateRequest request) {
         userService.create(request);
+    }
+
+    @PutMapping("/{userId}")
+    public void update(@PathVariable String userId,
+                       @RequestBody UserUpdateRequest update) {
+        userService.update(userId, update);
     }
 }

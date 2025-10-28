@@ -1,6 +1,7 @@
 package com.kt.shopping.repository;
 
 import com.kt.shopping.domain.User;
+import com.kt.shopping.domain.dto.request.UserUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -21,5 +22,16 @@ public class UserRepository {
                 user.getBirthday()
         );
 
+    }
+
+    public void update(String userId, UserUpdateRequest update) {
+        String sql = "UPDATE MEMBER SET password=?, name=?, birthday=? WHERE login_id=?";
+        jdbcTemplate.update(
+                sql,
+                update.password(),
+                update.name(),
+                update.birthday(),
+                userId
+        );
     }
 }
