@@ -79,6 +79,11 @@ public class UserRepository {
         return list.stream().findFirst();
     }
 
+    public void updateById(Long id, String name, String email, String mobile) {
+        String sql = "UPDATE MEMBER SET name = ?, email = ?, mobile = ?, updatedAt = ? WHERE id = ?";
+        jdbcTemplate.update(sql, name, email, mobile, LocalDateTime.now(), id);
+    }
+
     private RowMapper<User> rowMapper() {
         return (rs, rowNum) -> mapToUser(rs);
     }
