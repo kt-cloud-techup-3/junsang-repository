@@ -35,4 +35,8 @@ public class UserServiceImpl implements UserService {
         userRepository.save(newUser);
     }
 
+    @Override
+    public boolean isDuplicateLoginId(String loginId) {
+        return userRepository.existsByLoginId(loginId);
+    }
 }

@@ -6,4 +6,6 @@ import com.kt.shopping.domain.dto.request.UserCreateRequest;
 public interface UserService {
 
     void create(UserCreateRequest request);
+
+    boolean isDuplicateLoginId(String loginId);
 }
