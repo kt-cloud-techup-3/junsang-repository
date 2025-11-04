@@ -1,6 +1,7 @@
 package com.kt.shopping.controller;
 
 import com.kt.shopping.domain.dto.request.UserCreateRequest;
+import com.kt.shopping.domain.dto.request.UserUpdatePasswordRequest;
 import com.kt.shopping.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,4 +26,13 @@ public class UserController {
     public Boolean isDuplicateLoginId(@RequestParam String loginId) {
         return userService.isDuplicateLoginId(loginId);
     }
+
+    @PutMapping("/{id}/update-password")
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePassword(
+            @PathVariable Integer id,
+            @RequestBody @Valid UserUpdatePasswordRequest request) {
+        userService.changePassword(id, request.oldPassword(), request.newPassword());
+    }
+
 }
