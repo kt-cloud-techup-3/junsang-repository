@@ -2,5 +2,11 @@ server:
   port: 8080
 
 spring:
-  application:
-    name: shopping
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:~/test
+    username: sa
+    password: 1234
+    driver-class-name: org.h2.Driver
