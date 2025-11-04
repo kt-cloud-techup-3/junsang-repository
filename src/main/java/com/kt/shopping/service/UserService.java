@@ -16,5 +16,8 @@ public interface UserService {
 
     void update(Long id, String name, String email, String mobile);
 
+    void delete(Long id);
+
     CustomPage search(int page, int size, String keyword);
+
 }

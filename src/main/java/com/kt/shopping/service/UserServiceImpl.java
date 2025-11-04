@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void create(UserCreateRequest request) {
         System.out.println(request.toString());
-        var newUser = new User(
+        User user = new User(
                 userRepository.selectMaxId() + 1,
                 request.loginId(),
                 request.password(),
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
                 LocalDateTime.now()
         );
 
-        userRepository.save(newUser);
+        userRepository.save(user);
     }
 
     @Override
@@ -68,6 +68,12 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
 
         userRepository.updateById(id, name, email, mobile);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        userRepository.deleteById(id);
     }
 
     public CustomPage search(int page, int size, String keyword) {

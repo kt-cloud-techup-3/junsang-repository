@@ -28,15 +28,15 @@ public class UserRepository {
               INTO 
 			MEMBER (
 					id, 
-					loginId, 
+					login_id, 
 					password, 
 					name, 
 					birthday,
 					mobile,
 					email,
 					gender,
-					createdAt,
-					updatedAt
+					created_at,
+					updated_at
 				) 
 			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 			""";
@@ -96,6 +96,15 @@ public class UserRepository {
         String sql = "UPDATE MEMBER SET name = ?, email = ?, mobile = ?, updatedAt = ? WHERE id = ?";
         jdbcTemplate.update(sql, name, email, mobile, LocalDateTime.now(), id);
     }
+
+    public void deleteById(Long id) {
+        String sql = "DELETE FROM member WHERE id = ?";
+        jdbcTemplate.update(
+                sql,
+                id
+        );
+    }
+
 
     private RowMapper<User> rowMapper() {
         return (rs, rowNum) -> mapToUser(rs);
