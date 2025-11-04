@@ -2,6 +2,7 @@ package com.kt.shopping.controller;
 
 import com.kt.shopping.domain.User;
 import com.kt.shopping.domain.dto.request.UserUpdateRequest;
+import com.kt.shopping.domain.dto.response.CustomPage;
 import com.kt.shopping.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,15 @@ import org.springframework.web.bind.annotation.*;
 public class AdminUserController {
 
     private final UserService userService;
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public CustomPage search(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false) String keyword) {
+        return userService.search(page, size, keyword);
+    }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

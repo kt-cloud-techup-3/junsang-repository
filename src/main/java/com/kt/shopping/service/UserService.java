@@ -2,6 +2,7 @@ package com.kt.shopping.service;
 
 import com.kt.shopping.domain.User;
 import com.kt.shopping.domain.dto.request.UserCreateRequest;
+import com.kt.shopping.domain.dto.response.CustomPage;
 
 public interface UserService {
 
@@ -14,4 +15,6 @@ public interface UserService {
     User detail(Long id);
 
     void update(Long id, String name, String email, String mobile);
+
+    CustomPage search(int page, int size, String keyword);
 }
