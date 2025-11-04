@@ -3,6 +3,7 @@ package com.kt.shopping.repository;
 import com.kt.shopping.constants.user.Gender;
 import com.kt.shopping.domain.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.util.Pair;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -77,6 +78,18 @@ public class UserRepository {
         String sql = "SELECT * FROM MEMBER WHERE id = ?";
         List<User> list = jdbcTemplate.query(sql, rowMapper(), id);
         return list.stream().findFirst();
+    }
+
+    public Pair<List<User>, Long> selectAll(int page, int size, String keyword) {
+        String sql = "SELECT * FROM MEMBER WHERE name LIKE CONCAT('%', ? ,'%') LIMIT ? OFFSET ?";
+
+        List<User> users = jdbcTemplate.query(sql, rowMapper(), keyword, size, page);
+
+        String countSql = "SELECT COUNT(*) FROM MEMBER WHERE name LIKE CONCAT('%', ? ,'%')";
+
+        Long totalElements = jdbcTemplate.queryForObject(countSql, Long.class, keyword);
+        assert totalElements != null;
+        return Pair.of(users, totalElements);
     }
 
     public void updateById(Long id, String name, String email, String mobile) {

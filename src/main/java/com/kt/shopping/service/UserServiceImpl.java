@@ -2,6 +2,7 @@ package com.kt.shopping.service;
 
 import com.kt.shopping.domain.User;
 import com.kt.shopping.domain.dto.request.UserCreateRequest;
+import com.kt.shopping.domain.dto.response.CustomPage;
 import com.kt.shopping.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -67,5 +68,18 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
 
         userRepository.updateById(id, name, email, mobile);
+    }
+
+    public CustomPage search(int page, int size, String keyword) {
+        var pair = userRepository.selectAll(page - 1, size, keyword);
+        var pages = (int) Math.ceil((double) pair.getSecond() / size);
+
+        return new CustomPage(
+                pair.getFirst(),
+                size,
+                page,
+                pages,
+                pair.getSecond()
+        );
     }
 }
