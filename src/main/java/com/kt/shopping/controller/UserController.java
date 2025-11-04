@@ -18,6 +18,11 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody @Valid UserCreateRequest request) {
         userService.create(request);
+    }
 
+    @GetMapping("/duplicate-login-id")
+    @ResponseStatus(HttpStatus.OK)
+    public Boolean isDuplicateLoginId(@RequestParam String loginId) {
+        return userService.isDuplicateLoginId(loginId);
     }
 }
