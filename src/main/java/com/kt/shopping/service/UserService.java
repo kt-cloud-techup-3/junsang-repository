@@ -8,4 +8,6 @@ public interface UserService {
     void create(UserCreateRequest request);
 
     boolean isDuplicateLoginId(String loginId);
+
+    void changePassword(int id, String oldPassword, String password);
 }
