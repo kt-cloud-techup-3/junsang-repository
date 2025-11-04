@@ -1,0 +1,25 @@
+package com.kt.shopping.domain;
+
+import com.kt.shopping.constants.user.Gender;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class User {
+    private Long id;
+    private String loginId;
+    private String password;
+    private String name;
+    private String email;
+    private String mobile;
+    private Gender gender;
+    private LocalDate birthday;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+}
