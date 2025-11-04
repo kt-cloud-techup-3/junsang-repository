@@ -10,4 +10,6 @@ public interface UserService {
     boolean isDuplicateLoginId(String loginId);
 
     void changePassword(int id, String oldPassword, String password);
+
+    User detail(Long id);
 }
