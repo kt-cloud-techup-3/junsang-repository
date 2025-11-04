@@ -39,4 +39,10 @@ public class AdminUserController {
         userService.update(id, request.name(), request.email(), request.mobile());
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable Long id) {
+        userService.delete(id);
+    }
+
 }
