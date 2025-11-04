@@ -12,4 +12,6 @@ public interface UserService {
     void changePassword(int id, String oldPassword, String password);
 
     User detail(Long id);
+
+    void update(Long id, String name, String email, String mobile);
 }
