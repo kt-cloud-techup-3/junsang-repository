@@ -1,6 +1,6 @@
 package com.kt.shopping.domain.dto.request;
 
-import com.kt.shopping.constants.user.Gender;
+import com.kt.shopping.constants.Gender;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;

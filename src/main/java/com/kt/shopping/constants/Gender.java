@@ -1,4 +1,4 @@
-package com.kt.shopping.constants.user;
+package com.kt.shopping.constants;
 
 public enum Gender {
     MALE, FEMALE
