@@ -3,6 +3,8 @@ package com.kt.shopping.service;
 import com.kt.shopping.domain.User;
 import com.kt.shopping.domain.dto.request.UserCreateRequest;
 import com.kt.shopping.domain.dto.response.CustomPage;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface UserService {
 
@@ -10,7 +12,7 @@ public interface UserService {
 
     boolean isDuplicateLoginId(String loginId);
 
-    void changePassword(int id, String oldPassword, String password);
+    void changePassword(Long id, String oldPassword, String password);
 
     User detail(Long id);
 
@@ -18,6 +20,6 @@ public interface UserService {
 
     void delete(Long id);
 
-    CustomPage search(int page, int size, String keyword);
+    Page<User> search(Pageable pageable, String keyword);
 
 }
