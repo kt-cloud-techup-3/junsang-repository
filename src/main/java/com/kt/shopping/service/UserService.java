@@ -1,8 +1,7 @@
 package com.kt.shopping.service;
 
-import com.kt.shopping.domain.User;
+import com.kt.shopping.domain.model.User;
 import com.kt.shopping.domain.dto.request.UserCreateRequest;
-import com.kt.shopping.domain.dto.response.CustomPage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

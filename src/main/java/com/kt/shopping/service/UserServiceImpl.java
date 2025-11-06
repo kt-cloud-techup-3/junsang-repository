@@ -1,6 +1,6 @@
 package com.kt.shopping.service;
 
-import com.kt.shopping.domain.User;
+import com.kt.shopping.domain.model.User;
 import com.kt.shopping.domain.dto.request.UserCreateRequest;
 import com.kt.shopping.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

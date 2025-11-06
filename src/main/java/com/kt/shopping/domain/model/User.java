@@ -1,35 +1,33 @@
-package com.kt.shopping.domain;
+package com.kt.shopping.domain.model;
 
-import com.kt.shopping.constants.user.Gender;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+import com.kt.shopping.constants.Gender;
+import com.kt.shopping.domain.model.common.BaseEntity;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends BaseEntity {
 
     private String loginId;
     private String password;
     private String name;
     private String email;
     private String mobile;
+
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private LocalDate birthday;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders = new ArrayList<>();
 
     public User(String loginId,
                 String password,
