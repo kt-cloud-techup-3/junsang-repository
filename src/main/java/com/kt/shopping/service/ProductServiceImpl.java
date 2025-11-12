@@ -20,6 +20,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public void update(Long id, String name, Long price, Long quantity) {
+        var product = productRepository.findByIdOrThrow(id);
+
+        product.update(name, price, quantity);
+    }
+
+    @Override
     public void soldOut(Long id) {
         Product product = productRepository.findByIdOrThrow(id);
         product.soldOut();

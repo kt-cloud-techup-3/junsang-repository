@@ -5,7 +5,6 @@ import com.kt.shopping.domain.dto.request.product.ProductRequest;
 import com.kt.shopping.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +14,6 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
     public ApiResult<Void> create(
             @RequestBody @Valid ProductRequest.Create request
     ) {
@@ -27,6 +25,20 @@ public class ProductController {
         return ApiResult.ok();
     }
 
+    @PutMapping("/{id}")
+    public ApiResult<Void> update(
+            @PathVariable Long id,
+            @RequestBody @Valid ProductRequest.Update request
+    ) {
+        productService.update(
+                id,
+                request.name(),
+                request.price(),
+                request.quantity()
+        );
+
+        return ApiResult.ok();
+    }
     @PatchMapping("/{id}/sold-out")
     public void soldOut(@PathVariable Long id) {
         productService.soldOut(id);
