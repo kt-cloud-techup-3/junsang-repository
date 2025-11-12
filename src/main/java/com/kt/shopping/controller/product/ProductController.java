@@ -1,7 +1,7 @@
-package com.kt.shopping.controller;
+package com.kt.shopping.controller.product;
 
+import com.kt.shopping.common.api.ApiResult;
 import com.kt.shopping.domain.dto.request.product.ProductRequest;
-import com.kt.shopping.domain.dto.response.ProductCreateResponse;
 import com.kt.shopping.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public void create(
+    public ApiResult<Void> create(
             @RequestBody @Valid ProductRequest.Create request
     ) {
         productService.create(
@@ -24,6 +24,7 @@ public class ProductController {
                 request.price(),
                 request.quantity()
         );
+        return ApiResult.ok();
     }
 
 }
