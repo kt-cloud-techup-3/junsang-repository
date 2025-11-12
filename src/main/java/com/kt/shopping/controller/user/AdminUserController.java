@@ -1,5 +1,6 @@
-package com.kt.shopping.controller;
+package com.kt.shopping.controller.user;
 
+import com.kt.shopping.common.api.ApiResult;
 import com.kt.shopping.domain.dto.request.user.UserRequest;
 import com.kt.shopping.domain.model.user.User;
 
@@ -20,31 +21,37 @@ public class AdminUserController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Page<User> search(
+    public ApiResult<Page<User>> search(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(required = false) String keyword) {
-        return userService.search(PageRequest.of(page - 1 , size), keyword);
+        return ApiResult.ok(
+                userService.search(
+                        PageRequest.of(page - 1 , size), keyword
+                )
+        );
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public User detail(@PathVariable Long id) {
-        return userService.detail(id);
+    public ApiResult<User> detail(@PathVariable Long id) {
+        return ApiResult.ok(userService.detail(id));
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void update(
+    public ApiResult<Void> update(
             @PathVariable Long id,
             @RequestBody @Valid UserRequest.Update request) {
         userService.update(id, request.name(), request.email(), request.mobile());
+        return ApiResult.ok();
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void delete(@PathVariable Long id) {
+    public ApiResult<Void> delete(@PathVariable Long id) {
         userService.delete(id);
+        return ApiResult.ok();
     }
 
 }

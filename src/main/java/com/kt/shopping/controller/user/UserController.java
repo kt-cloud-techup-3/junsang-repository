@@ -1,5 +1,6 @@
-package com.kt.shopping.controller;
+package com.kt.shopping.controller.user;
 
+import com.kt.shopping.common.api.ApiResult;
 import com.kt.shopping.domain.dto.request.UserCreateRequest;
 import com.kt.shopping.domain.dto.request.user.UserRequest;
 import com.kt.shopping.domain.dto.request.user.UserUpdatePasswordRequest;
@@ -26,24 +27,29 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(
+    public ApiResult<Void> create(
             @RequestBody @Valid UserRequest.Create request
     ) {
         userService.create(request);
+        return ApiResult.ok();
     }
 
     @GetMapping("/duplicate-login-id")
     @ResponseStatus(HttpStatus.OK)
-    public Boolean isDuplicateLoginId(@RequestParam String loginId) {
-        return userService.isDuplicateLoginId(loginId);
+    public ApiResult<Boolean> isDuplicateLoginId(@RequestParam String loginId) {
+        return ApiResult.ok(
+            userService.isDuplicateLoginId(loginId)
+        );
+
     }
 
     @PutMapping("/{id}/update-password")
     @ResponseStatus(HttpStatus.OK)
-    public void updatePassword(
+    public ApiResult<Void> updatePassword(
             @PathVariable Long id,
             @RequestBody @Valid UserUpdatePasswordRequest request) {
         userService.changePassword(id, request.oldPassword(), request.newPassword());
+        return ApiResult.ok();
     }
 
 }
