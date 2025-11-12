@@ -1,14 +1,17 @@
 package com.kt.shopping.controller.user;
 
+import com.kt.shopping.common.Paging;
 import com.kt.shopping.common.api.ApiResult;
 import com.kt.shopping.domain.dto.request.user.UserRequest;
+import com.kt.shopping.domain.dto.response.UserResponse;
 import com.kt.shopping.domain.model.user.User;
 
 import com.kt.shopping.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,16 +22,21 @@ public class AdminUserController {
 
     private final UserService userService;
 
+    @Operation(
+        parameters = {
+            @Parameter(name = "keyword", description = "검색 키워드(이름)"),
+            @Parameter(name = "page", description = "페이지 번호", example = "1"),
+            @Parameter(name = "size", description = "페이지 크기", example = "10")
+        }
+    )
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ApiResult<Page<User>> search(
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(required = false) String keyword) {
+    public ApiResult<Page<UserResponse.Search>>  search(
+        @Parameter(hidden = true) Paging paging,
+        @RequestParam(required = false) String keyword
+    ) {
         return ApiResult.ok(
-                userService.search(
-                        PageRequest.of(page - 1 , size), keyword
-                )
+                userService.search(paging.toPageable(), keyword)
         );
     }
 

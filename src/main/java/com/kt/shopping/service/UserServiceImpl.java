@@ -1,6 +1,7 @@
 package com.kt.shopping.service;
 
 import com.kt.shopping.domain.dto.request.user.UserRequest;
+import com.kt.shopping.domain.dto.response.UserResponse;
 import com.kt.shopping.domain.model.user.User;
 import com.kt.shopping.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -76,7 +77,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<User> search(Pageable pageable, String keyword) {
-        return userRepository.findAllByNameContaining(keyword, pageable);
+    public Page<UserResponse.Search> search(Pageable pageable, String keyword) {
+        Page<User> list = userRepository.findAllByNameContaining(keyword, pageable);
+        return list.map(
+                user -> new UserResponse.Search(
+                        user.getId(),
+                        user.getName(),
+                        user.getCreatedAt()
+                )
+        );
     }
 }
