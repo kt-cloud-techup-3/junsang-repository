@@ -1,6 +1,6 @@
 package com.kt.shopping.domain.dto.response;
 
-import com.kt.shopping.domain.model.User;
+import com.kt.shopping.domain.model.user.User;
 
 import java.util.List;
 

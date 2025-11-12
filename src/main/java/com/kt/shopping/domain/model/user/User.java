@@ -1,7 +1,8 @@
-package com.kt.shopping.domain.model;
+package com.kt.shopping.domain.model.user;
 
 import com.kt.shopping.constants.Gender;
 import com.kt.shopping.domain.model.common.BaseEntity;
+import com.kt.shopping.domain.model.order.Order;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
