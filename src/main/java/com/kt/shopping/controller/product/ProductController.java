@@ -27,4 +27,32 @@ public class ProductController {
         return ApiResult.ok();
     }
 
+    @PatchMapping("/{id}/sold-out")
+    public void soldOut(@PathVariable Long id) {
+        productService.soldOut(id);
+    }
+
+    @PatchMapping("/{id}/activate")
+    public ApiResult<Void> activate(@PathVariable Long id) {
+        productService.activate(id);
+
+        return ApiResult.ok();
+    }
+
+    @PatchMapping("/{id}/in-activate")
+    public ApiResult<Void> inActivate(@PathVariable Long id) {
+        productService.inActivate(id);
+
+        return ApiResult.ok();
+    }
+
+    @DeleteMapping("/{id}")
+    public ApiResult<Void> remove(@PathVariable Long id) {
+        productService.delete(id);
+
+        return ApiResult.ok();
+    }
+
+
+
 }
