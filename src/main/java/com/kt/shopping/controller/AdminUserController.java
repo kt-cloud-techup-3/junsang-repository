@@ -1,7 +1,8 @@
 package com.kt.shopping.controller;
 
+import com.kt.shopping.domain.dto.request.user.UserRequest;
 import com.kt.shopping.domain.model.user.User;
-import com.kt.shopping.domain.dto.request.UserUpdateRequest;
+
 import com.kt.shopping.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +37,7 @@ public class AdminUserController {
     @ResponseStatus(HttpStatus.OK)
     public void update(
             @PathVariable Long id,
-            @RequestBody @Valid UserUpdateRequest request) {
+            @RequestBody @Valid UserRequest.Update request) {
         userService.update(id, request.name(), request.email(), request.mobile());
     }
 

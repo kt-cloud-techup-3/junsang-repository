@@ -1,7 +1,8 @@
 package com.kt.shopping.controller;
 
 import com.kt.shopping.domain.dto.request.UserCreateRequest;
-import com.kt.shopping.domain.dto.request.UserUpdatePasswordRequest;
+import com.kt.shopping.domain.dto.request.user.UserRequest;
+import com.kt.shopping.domain.dto.request.user.UserUpdatePasswordRequest;
 import com.kt.shopping.service.UserService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -25,7 +26,9 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody @Valid UserCreateRequest request) {
+    public void create(
+            @RequestBody @Valid UserRequest.Create request
+    ) {
         userService.create(request);
     }
 

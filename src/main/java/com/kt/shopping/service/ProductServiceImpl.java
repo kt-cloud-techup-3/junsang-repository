@@ -1,6 +1,7 @@
 package com.kt.shopping.service;
 
 import com.kt.shopping.domain.dto.request.ProductCreateRequest;
+import com.kt.shopping.domain.dto.request.product.ProductRequest;
 import com.kt.shopping.domain.dto.response.ProductCreateResponse;
 import com.kt.shopping.domain.model.product.Product;
 import com.kt.shopping.repository.ProductRepository;
@@ -16,17 +17,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public ProductCreateResponse create(ProductCreateRequest request) {
-        Product product = Product.create(
-                request.name(),
-                request.price(),
-                request.stock()
-        );
+    public void create(String name, Long price, Long quantity) {
+        Product product = Product.create(name, price, quantity);
         productRepository.save(product);
-        return new ProductCreateResponse(
-                product.getName(),
-                product.getPrice(),
-                product.getStock()
-        );
     }
 }

@@ -1,5 +1,6 @@
 package com.kt.shopping.service;
 
+import com.kt.shopping.domain.dto.request.user.UserRequest;
 import com.kt.shopping.domain.model.user.User;
 import com.kt.shopping.domain.dto.request.UserCreateRequest;
 import org.springframework.data.domain.Page;
@@ -7,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface UserService {
 
-    void create(UserCreateRequest request);
+    void create(UserRequest.Create request);
 
     boolean isDuplicateLoginId(String loginId);
 
