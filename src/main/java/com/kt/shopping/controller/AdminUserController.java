@@ -1,6 +1,6 @@
 package com.kt.shopping.controller;
 
-import com.kt.shopping.domain.model.User;
+import com.kt.shopping.domain.model.user.User;
 import com.kt.shopping.domain.dto.request.UserUpdateRequest;
 import com.kt.shopping.service.UserService;
 import jakarta.validation.Valid;

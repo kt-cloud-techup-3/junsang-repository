@@ -1,6 +1,8 @@
-package com.kt.shopping.domain.model;
+package com.kt.shopping.domain.model.orderproduct;
 
 import com.kt.shopping.domain.model.common.BaseEntity;
+import com.kt.shopping.domain.model.order.Order;
+import com.kt.shopping.domain.model.product.Product;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;

@@ -2,7 +2,7 @@ package com.kt.shopping.service;
 
 import com.kt.shopping.domain.dto.request.ProductCreateRequest;
 import com.kt.shopping.domain.dto.response.ProductCreateResponse;
-import com.kt.shopping.domain.model.Product;
+import com.kt.shopping.domain.model.product.Product;
 import com.kt.shopping.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,7 @@
-package com.kt.shopping.domain.model;
+package com.kt.shopping.domain.model.product;
 
 import com.kt.shopping.constants.ProductStatus;
+import com.kt.shopping.domain.model.orderproduct.OrderProduct;
 import com.kt.shopping.domain.model.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
