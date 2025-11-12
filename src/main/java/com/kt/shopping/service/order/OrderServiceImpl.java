@@ -2,6 +2,7 @@ package com.kt.shopping.service.order;
 
 import com.kt.shopping.common.Preconditions;
 import com.kt.shopping.common.api.ErrorCode;
+import com.kt.shopping.domain.dto.response.order.OrderResponse;
 import com.kt.shopping.domain.model.order.Order;
 import com.kt.shopping.domain.model.order.Receiver;
 import com.kt.shopping.domain.model.orderproduct.OrderProduct;
@@ -12,6 +13,8 @@ import com.kt.shopping.repository.OrderRepository;
 import com.kt.shopping.repository.ProductRepository;
 import com.kt.shopping.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,5 +59,13 @@ public class OrderServiceImpl implements OrderService {
 
         product.mapToOrderProduct(orderProduct);
         order.mapToOrderProduct(orderProduct);
+    }
+
+    @Override
+    public Page<OrderResponse.Search> search(
+            String keyword,
+            Pageable pageable
+    ) {
+        return orderRepository.search(keyword, pageable);
     }
 }

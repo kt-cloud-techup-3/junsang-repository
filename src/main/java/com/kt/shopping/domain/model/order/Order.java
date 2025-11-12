@@ -6,13 +6,17 @@ import com.kt.shopping.domain.model.user.User;
 import com.kt.shopping.domain.model.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "\"order\"")
+import static lombok.AccessLevel.PROTECTED;
+
 @Getter
+@Entity(name = "\"order\"")
+@NoArgsConstructor(access = PROTECTED)
 public class Order extends BaseEntity {
 
     @Embedded
