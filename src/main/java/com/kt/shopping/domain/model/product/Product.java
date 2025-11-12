@@ -31,7 +31,7 @@ public class Product extends BaseEntity {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private ProductStatus productStatus;
+    private ProductStatus status;
 
     @Column(nullable = false)
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
@@ -41,9 +41,48 @@ public class Product extends BaseEntity {
         this.name = name;
         this.price = price;
         this.stock = stock;
-        this.productStatus = ProductStatus.ACTIVE;
+        this.status = ProductStatus.ACTIVATED;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
+    }
+
+    public void update(String name, Long price, Long stock) {
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+    }
+
+    public void soldOut() {
+        this.status = ProductStatus.SOLD_OUT;
+    }
+
+    public void inActivate() {
+        this.status = ProductStatus.IN_ACTIVATED;
+    }
+
+    public void activate() {
+        this.status = ProductStatus.ACTIVATED;
+    }
+
+    public void delete() {
+        // 논리삭제
+        this.status = ProductStatus.DELETED;
+    }
+
+    public void decreaseStock(Long quantity) {
+        this.stock -= quantity;
+    }
+
+    public void increaseStock(Long quantity) {
+        this.stock += quantity;
+    }
+
+    public boolean canProvide(Long quantity) {
+        return this.stock >= quantity;
+    }
+
+    public void mapToOrderProduct(OrderProduct orderProduct) {
+        this.orderProducts.add(orderProduct);
     }
 
     public static Product create(final String name,

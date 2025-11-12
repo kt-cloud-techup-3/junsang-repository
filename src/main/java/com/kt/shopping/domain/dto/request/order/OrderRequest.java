@@ -12,7 +12,7 @@ import static lombok.AccessLevel.PROTECTED;
 public class OrderRequest {
 
     @Schema(name = "OrderRequest.Create")
-    record Create(
+    public record Create(
         @NotNull
         Long productId,
         @NotNull
