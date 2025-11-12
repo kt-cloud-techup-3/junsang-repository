@@ -1,7 +1,6 @@
 package com.kt.shopping.controller.user;
 
 import com.kt.shopping.common.api.ApiResult;
-import com.kt.shopping.domain.dto.request.UserCreateRequest;
 import com.kt.shopping.domain.dto.request.user.UserRequest;
 import com.kt.shopping.domain.dto.request.user.UserUpdatePasswordRequest;
 import com.kt.shopping.service.UserService;
