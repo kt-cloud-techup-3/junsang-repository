@@ -1,7 +1,7 @@
 package com.kt.shopping.service;
 
+import com.kt.shopping.domain.dto.request.user.UserRequest;
 import com.kt.shopping.domain.model.user.User;
-import com.kt.shopping.domain.dto.request.UserCreateRequest;
 import com.kt.shopping.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void create(UserCreateRequest request) {
+    public void create(UserRequest.Create request) {
         User user = new User(
                 request.loginId(),
                 request.password(),

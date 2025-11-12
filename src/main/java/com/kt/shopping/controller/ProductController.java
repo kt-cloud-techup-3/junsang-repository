@@ -1,6 +1,6 @@
 package com.kt.shopping.controller;
 
-import com.kt.shopping.domain.dto.request.ProductCreateRequest;
+import com.kt.shopping.domain.dto.request.product.ProductRequest;
 import com.kt.shopping.domain.dto.response.ProductCreateResponse;
 import com.kt.shopping.service.ProductService;
 import jakarta.validation.Valid;
@@ -16,9 +16,14 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public ProductCreateResponse create(
-            @RequestBody @Valid ProductCreateRequest request) {
-        return productService.create(request);
+    public void create(
+            @RequestBody @Valid ProductRequest.Create request
+    ) {
+        productService.create(
+                request.name(),
+                request.price(),
+                request.quantity()
+        );
     }
 
 }

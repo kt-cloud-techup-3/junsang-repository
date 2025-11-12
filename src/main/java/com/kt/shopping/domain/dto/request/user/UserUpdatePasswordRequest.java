@@ -1,4 +1,4 @@
-package com.kt.shopping.domain.dto.request;
+package com.kt.shopping.domain.dto.request.user;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
