@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
         @ApiResponse(responseCode = "500", description = "서버 에러 - 백엔드에 바로 문의 바랍니다.")
 })
 @RequiredArgsConstructor
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 @RestController
 public class UserController {
 
