@@ -33,13 +33,14 @@ public class OrderProduct extends BaseEntity {
     }
 
     public static OrderProduct create(
-            Order order,
-            Product product,
-            Long quantity) {
+        Order order,
+        Product product,
+        Long quantity
+    ) {
         return new OrderProduct(
-                order,
-                product,
-                quantity
+            order,
+            product,
+            quantity
         );
     }
 

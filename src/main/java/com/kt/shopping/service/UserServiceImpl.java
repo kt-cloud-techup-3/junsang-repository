@@ -1,5 +1,6 @@
 package com.kt.shopping.service;
 
+import com.kt.shopping.constants.Role;
 import com.kt.shopping.domain.dto.request.user.UserRequest;
 import com.kt.shopping.domain.dto.response.UserResponse;
 import com.kt.shopping.domain.model.user.User;
@@ -31,7 +32,8 @@ public class UserServiceImpl implements UserService {
                 request.gender(),
                 request.birthday(),
                 LocalDateTime.now(),
-                LocalDateTime.now()
+                LocalDateTime.now(),
+                Role.USER
         );
         userRepository.save(user);
     }

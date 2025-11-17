@@ -1,6 +1,7 @@
 package com.kt.shopping.domain.model.user;
 
 import com.kt.shopping.constants.Gender;
+import com.kt.shopping.constants.Role;
 import com.kt.shopping.domain.model.common.BaseEntity;
 import com.kt.shopping.domain.model.order.Order;
 import jakarta.persistence.*;
@@ -27,6 +28,9 @@ public class User extends BaseEntity {
     private Gender gender;
     private LocalDate birthday;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @OneToMany(mappedBy = "user")
     private List<Order> orders = new ArrayList<>();
 
@@ -38,7 +42,8 @@ public class User extends BaseEntity {
                 Gender gender,
                 LocalDate birthday,
                 LocalDateTime createdAt,
-                LocalDateTime updatedAt) {
+                LocalDateTime updatedAt,
+                Role role) {
         this.loginId = loginId;
         this.password = password;
         this.name = name;
@@ -48,6 +53,7 @@ public class User extends BaseEntity {
         this.birthday = birthday;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.role = role;
     }
 
     public void updatePassword(String newPassword) {
