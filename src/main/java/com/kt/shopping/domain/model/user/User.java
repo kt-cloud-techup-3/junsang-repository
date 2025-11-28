@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "\"user\"")
 @Getter
 @NoArgsConstructor
 public class User extends BaseEntity {

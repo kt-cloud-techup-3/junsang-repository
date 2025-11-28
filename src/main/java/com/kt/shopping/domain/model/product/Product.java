@@ -14,7 +14,7 @@ import java.util.List;
 
 import static lombok.AccessLevel.PROTECTED;
 
-@Entity
+@Entity(name = "product")
 @Getter
 @ToString(exclude = {"orderProducts"})
 @NoArgsConstructor(access = PROTECTED)
