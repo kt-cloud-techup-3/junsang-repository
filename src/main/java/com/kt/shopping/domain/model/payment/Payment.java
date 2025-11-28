@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 
 @Getter
-@Entity
+@Entity(name = "payment")
 public class Payment extends BaseEntity {
 
     @Column(nullable = false)

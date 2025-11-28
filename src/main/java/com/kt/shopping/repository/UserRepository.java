@@ -14,11 +14,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Boolean existsByLoginId(String loginId);
 
-    @Query("""
-		SELECT exists (SELECT u FROM User u WHERE u.loginId = ?1)
-		""")
-    Boolean existsByLoginIdJPQL(String loginId);
-
     Page<User> findAllByNameContaining(String keyword, Pageable pageable);
 
     default User findByIdOrThrow(Long id, ErrorCode errorCode) {
